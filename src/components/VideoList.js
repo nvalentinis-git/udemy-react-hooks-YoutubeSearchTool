@@ -1,23 +1,18 @@
 import React from 'react';
-import VideoListItem from './VideoListItem';
+import VideoItem from './VideoItem';
 
-// Fuctional Component
-const VideoList = (props) => {
-
-  const videoItems = props.videos.map( video => {
+const VideoList = ({ videos, onVideoSelect }) => {
+  const renderedList = videos.map(video => {
     return (
-      <VideoListItem
-        onVideoSelect = {props.onVideoSelect}
-        key={video.etag}
-        video={video} />
+      <VideoItem
+        key={video.id.videoId}
+        onVideoSelect={onVideoSelect}
+        video={video}
+      />
     );
   });
 
-  return (
-    <ul className="col-md-4 list-group" >
-      {videoItems}
-    </ul>
-  );
+  return <div className="ui relaxed divided list">{renderedList}</div>;
 };
 
 export default VideoList;
